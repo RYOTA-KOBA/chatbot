@@ -30,8 +30,7 @@ const FormDialog = (props: any) => {
     return regex.test(email)
   }
 
-  // @ts-expect-error ts-migrate(7019) FIXME: Rest parameter 'args' implicitly has an 'any[]' ty... Remove this comment to see the full error message
-  const validateRequiredInput = (...args) => {
+  const validateRequiredInput = (...args: string[]) => {
     let isBlank = false;
     for (let i = 0; i < args.length; i=(i+1)|0) {
         if (args[i] === "") {
@@ -77,18 +76,14 @@ const FormDialog = (props: any) => {
   
 
   return(
-      // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <Dialog
       open={props.open}
       onClose={props.handleClose}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <DialogTitle id="alert-dialog-title">お問い合わせフォーム</DialogTitle>
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <DialogContent>
-        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <TextInput 
           label={"お名前(必須)"}
           multiline={false}
@@ -97,7 +92,6 @@ const FormDialog = (props: any) => {
           type={"text"}
           onChange={inputName}
         />
-        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <TextInput 
           label={"メールアドレス(必須)"}
           multiline={false}
@@ -106,7 +100,6 @@ const FormDialog = (props: any) => {
           type={"email"}
           onChange={inputEmail}
         />
-        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <TextInput 
           label={"お問い合わせ内容(必須)"}
           multiline={true}
@@ -116,11 +109,8 @@ const FormDialog = (props: any) => {
           onChange={inputDescription}
         />
       </DialogContent>
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <DialogActions>
-        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <Button onClick={props.handleClose} color="primary">キャンセル</Button>
-        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <Button onClick={submitForm} color="primary" autoFocus>送信する</Button>
       </DialogActions>
     </Dialog>

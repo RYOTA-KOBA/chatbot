@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback} from 'react';
 import './assets/styles/style.css';
 import {AnswersList, Chats} from './components/index';
-// @ts-expect-error ts-migrate(6142) FIXME: Module './components/Forms/FormDialog' was resolve... Remove this comment to see the full error message
 import FormDialog from './components/Forms/FormDialog';
 import {db} from './firebase/index';
 
@@ -12,7 +11,19 @@ const App = () => {
   const [dataset, setDataset] = useState({});
   const [open, setOpen] = useState(false);
 
-  const displayNextQuestion = (nextQuestionId: any, nextDataset: any) => {
+  interface Dataset {
+    "answers": Array<Answer>,
+    "question": string
+  }
+
+  interface Answer {
+    "answers": [
+      {"content": string, "nextId": string}
+    ]
+  }
+
+
+  const displayNextQuestion = (nextQuestionId: string, nextDataset: Dataset) => {
     addChats({
       text: nextDataset.question,
       type: 'question'
@@ -40,15 +51,13 @@ const App = () => {
               text: selectedAnswer,
               type: 'answer'
           })
-        // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
         setTimeout(() => displayNextQuestion(nextQuestionId, dataset[nextQuestionId]), 500) 
         break;
     }
   }
 
   const addChats = (chat: any) => {
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '(prevChats: never[]) => any[]' i... Remove this comment to see the full error message
-    setChats(prevChats => {
+    setChats((prevState) => {
       return [...prevChats, chat]
     })
   }
@@ -70,13 +79,11 @@ const App = () => {
         snapshots.forEach(doc => {
           const id = doc.id
           const data = doc.data()
-          // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
           initDataset[id] = data
         })
       })
 
       setDataset(initDataset)
-      // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
       displayNextQuestion(currentId, initDataset[currentId])
     })()
   }, [])
@@ -89,15 +96,10 @@ const App = () => {
   })
   
   return(
-    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <section className="c-section"> 
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <div className="c-box">
-        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <Chats chats={chats} />
-        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <AnswersList answers={answers} select={selectAnswer} />
-        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <FormDialog open={open} handleClose={handleClose} />
       </div>
     </section>
