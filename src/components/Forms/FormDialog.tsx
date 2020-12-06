@@ -8,7 +8,7 @@ import {TextInput} from "./index";
 // import {WEBHOOK_URL} from '../../webhookConfig'
 
 
-const FormDialog = (props) => {
+const FormDialog = (props: any) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [description, setDescription] = useState("");
@@ -25,12 +25,12 @@ const FormDialog = (props) => {
     setDescription(event.target.value)
   }, [setDescription]);
 
-  const validateEmailFormat = (email) => {
+  const validateEmailFormat = (email: any) => {
     const regex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
     return regex.test(email)
   }
 
-  const validateRequiredInput = (...args) => {
+  const validateRequiredInput = (...args: string[]) => {
     let isBlank = false;
     for (let i = 0; i < args.length; i=(i+1)|0) {
         if (args[i] === "") {

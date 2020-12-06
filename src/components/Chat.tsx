@@ -6,7 +6,7 @@ import NoPlofile from '../assets/img/no-profile.png';
 import Minato from '../assets/img/minato.jpg';
 
 
-const Chat = (props) => {
+const Chat = (props: any) => {
     const isQuestion = (props.type === 'question');
     const classes = isQuestion ? 'p-chat__row' : 'p-chat__reverse';
 

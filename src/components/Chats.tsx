@@ -14,16 +14,16 @@ const useStyles = makeStyles(() => (
     })
 ));
 
-const Chats = (props) => {
+const Chats = (props: any) => {
     const classes = useStyles();
 
     return (
         <List className={classes.chats} id={"scroll-area"}>
-            {props.chats.map((chat, index) => {
+            {props.chats.map((chat: any, index: any) => {
                 return <Chat text={chat.text} type={chat.type} key={index.toString()} />
         })}
         </List>
-    )
+    );
 }
 
 export default Chats;

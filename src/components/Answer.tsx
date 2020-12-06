@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => (
     })
 ));
 
-const Answer = (props) => {
+const Answer = (props: any) => {
     const classes = useStyles();
 
     return(

@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
 
-const TextInput = (props) => {
+const TextInput = (props: any) => {
     return(
         <TextField 
             fullWidth={true}
