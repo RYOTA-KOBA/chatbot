@@ -11,19 +11,19 @@ const App = () => {
   const [dataset, setDataset] = useState({});
   const [open, setOpen] = useState(false);
 
-  interface Dataset {
-    "answers": Array<Answer>,
-    "question": string
-  }
+  // interface Dataset {
+  //   "answers": {key: string, value: string},
+  //   "question": string
+  // }
 
-  interface Answer {
-    "answers": [
-      {"content": string, "nextId": string}
-    ]
-  }
+  // interface Answer {
+  //   "answers": [
+  //     {"content": string, "nextId": string}: 
+  //   ]
+  // }
 
 
-  const displayNextQuestion = (nextQuestionId: string, nextDataset: Dataset) => {
+  const displayNextQuestion = (nextQuestionId: string, nextDataset: any) => {
     addChats({
       text: nextDataset.question,
       type: 'question'
@@ -33,7 +33,7 @@ const App = () => {
       setCurrentId(nextQuestionId)
   }
 
-  const selectAnswer = (selectedAnswer: any, nextQuestionId: any) => {
+  const selectAnswer = (selectedAnswer: any, nextQuestionId: string) => {
     switch(true) {
       case (nextQuestionId === 'contact'):
           handleClickOpen()
@@ -51,6 +51,9 @@ const App = () => {
               text: selectedAnswer,
               type: 'answer'
           })
+          type dataset = {
+
+          }
         setTimeout(() => displayNextQuestion(nextQuestionId, dataset[nextQuestionId]), 500) 
         break;
     }
@@ -73,13 +76,16 @@ const App = () => {
 
   useEffect(() => { 
     (async() => {
-      const initDataset = {};
+      const initDataset: any = {};
 
       await db.collection('questions').get().then(snapshots => {
         snapshots.forEach(doc => {
           const id = doc.id
           const data = doc.data()
+          // console.log(data)
           initDataset[id] = data
+          console.log(initDataset)
+          type DATA = typeof data
         })
       })
 
