@@ -3,8 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
 
-const TextInput = (props) => {
+const TextInput = (props: any) => {
     return(
+        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <TextField 
             fullWidth={true}
             label={props.label} 

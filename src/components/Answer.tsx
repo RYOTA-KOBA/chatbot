@@ -17,10 +17,11 @@ const useStyles = makeStyles(() => (
     })
 ));
 
-const Answer = (props) => {
+const Answer = (props: any) => {
     const classes = useStyles();
 
     return(
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <Button
         className={classes.button}
         variant="outlined" 
